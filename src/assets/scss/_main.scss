@@ -1,0 +1,255 @@
+// Mixins
+@mixin subtitle-style {
+   font-weight: 700;
+   line-height: 125%;
+   color: $color-title;
+}
+
+// Layout
+html {
+   font-size: 62.5%;
+}
+
+body {
+   font-size: 1.4rem;
+   font-family:
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      'Noto Sans',
+      'Liberation Sans',
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
+      'Noto Color Emoji';
+
+   background-color: $color-background;
+   color: $color-text;
+}
+
+.main {
+   margin-top: 6.5rem;
+}
+
+.container {
+   width: 100%;
+   max-width: 1120px;
+   padding: 0 1.5rem;
+   margin: 0 auto;
+}
+
+// Typography
+.subtitle {
+   @include subtitle-style();
+
+   color: $color-title;
+}
+
+// Loader
+.loader {
+   padding-top: 5rem;
+   text-align: center;
+}
+
+.loader__donut {
+   width: 8rem;
+   height: 8rem;
+
+   display: inline-block;
+
+   border: 0.6rem solid transparent;
+   border-left-color: $color-primary;
+   border-radius: 50%;
+
+   animation: donut-spin 1.3s linear infinite;
+
+   @keyframes donut-spin {
+      0% {
+         transform: rotate(0deg);
+      }
+      100% {
+         transform: rotate(360deg);
+      }
+   }
+}
+
+// Modal
+.modal {
+   position: absolute;
+}
+
+.modal__overlay {
+   position: fixed;
+   content: '';
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   z-index: 10;
+
+   background-color: #bcc3d080;
+   opacity: 0;
+
+   visibility: hidden;
+   pointer-events: none;
+   cursor: pointer;
+
+   transition: all 0s ease-out;
+
+   &--visible {
+      visibility: visible;
+      pointer-events: auto;
+      opacity: 1;
+   }
+}
+
+.modal__block {
+   position: fixed;
+   left: 50%;
+   top: 48%;
+   z-index: 20;
+   transform: translate(-50%, -50%);
+
+   opacity: 0;
+   background-color: $color-background;
+   border-radius: 5px;
+
+   overflow: hidden;
+   visibility: hidden;
+
+   transition: all 0.15s ease-out;
+
+   &--visible {
+      top: 50%;
+      opacity: 1;
+      visibility: visible;
+   }
+}
+
+.modal__close-button {
+   cursor: pointer;
+}
+
+// Search Section
+.input {
+   position: relative;
+}
+
+.input__field {
+   width: 100%;
+   height: 5rem;
+   padding-left: 1rem;
+   padding-right: 4.5rem;
+   color: $color-black;
+   font-size: 2rem;
+   border-radius: 25px;
+   border: 1px solid $color-secondary;
+   outline: none;
+   transition: border-radius 0.2s ease-out;
+
+   &:focus {
+      border-radius: 5px;
+   }
+}
+
+.input__icon {
+   position: absolute;
+   top: 50%;
+   right: 2.5rem;
+   width: 20px;
+   height: 20px;
+   transform: translateY(-50%);
+}
+
+// Users Section
+.users {
+   margin-top: 3.2rem;
+}
+
+.user-list {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   gap: 2.5rem;
+}
+
+.user-card {
+   min-height: 31rem;
+   max-width: 500px;
+   padding: 2.5rem;
+
+   display: flex;
+   flex-direction: column;
+
+   border-radius: 1.6rem;
+   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.user-card--button {
+   cursor: pointer;
+   row-gap: 2.4rem;
+}
+
+.user-card--expanded {
+   row-gap: 4rem;
+}
+
+.user-card__item {
+   display: flex;
+   align-items: center;
+
+   &:not(:first-child) {
+      margin-top: 1rem;
+   }
+}
+
+.user-card__item-text {
+   margin-left: 1.4rem;
+}
+
+.user-card__header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.user-card__list {
+   display: flex;
+   flex-direction: column;
+   row-gap: 1.4rem;
+}
+
+.user-card__list-item {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   column-gap: 2rem;
+   row-gap: 1rem;
+
+   &--wide {
+      .user-card__value {
+         width: 100%;
+      }
+   }
+}
+
+.user-card__value {
+   width: 60%;
+
+   font-size: 1.6rem;
+}
+
+.user-card__label {
+   font-size: 1.8rem;
+   color: $color-title;
+}
+
+// Media Queries
+@media (max-width: $small-screen) {
+   html {
+      font-size: 8px;
+   }
+}
